@@ -42,18 +42,48 @@ class Sandbox {
         if (length%2 !== 0) return (nums[(Math.floor(length/2))] /2);
     }
 
+    commonElements(kArray){
+        let map = {};
+        let arrs = JSON.parse(JSON.stringify(kArray));
+        let occurences = [];
+        let results = [];
+
+        for (let arr of arrs){
+            arr = arr.sort();
+        }
+
+        for (let arr of arrs){
+            for (let i = 0; i < arr.length; i++){
+                if (occurences[arr[i]]) continue;
+                occurences[arr[i]] = true;
+                map[arr[i]] ? map[arr[i]] += 1 : map[arr[i]] = 1
+            }
+            occurences = [];
+        }
+
+        for (let entry in map){
+            if (map[entry] === arrs.length) results.push(+entry)
+        }
+
+        return results;
+    }
 
 
 }
 
 
 let sandbox = new Sandbox();
-cc(sandbox.findMedian([3, 4, 5, 8]));
+cc(sandbox.commonElements([
+    [1, 2, 3, 4],
+    [5, 2, 3, 4],
+    [9, 9, 1, 2, 4]
+]));
 
 /*
 cc(sandbox.isPrime(95));
 cc(sandbox.rng100());
 cc(sandbox.twoSumImproved([1, 9, 12, 8, 4, 2, 3, 4], 8));
+cc(sandbox.findMedian([3, 4, 5, 8]));
 
 
 */
