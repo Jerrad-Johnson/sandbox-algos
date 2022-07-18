@@ -19,9 +19,30 @@ class Sandbox {
     rng100(){
         return Math.floor(Math.random() * 100);
     }
+
+    twoSumImproved(nums, target){
+        let map = [];
+        let current;
+        let difference;
+
+        for (let i = 0; i < nums.length; i++){
+            if (map[nums[i]]) continue;
+            if (!map[nums[i]]) map[nums[i]] = nums[i];
+            current = nums[i]
+            difference = target - current;
+            if (map[difference] && difference !== current) return [nums[i], map[difference]]
+        }
+
+        return false;
+    }
+
+
+
 }
 
+
 let sandbox = new Sandbox();
+cc(sandbox.twoSumImproved([1, 9, 12, 8, 4, 2, 3], 8));
 
 /*
 cc(sandbox.isPrime(95));
