@@ -30,10 +30,16 @@ class Sandbox {
             if (!map[nums[i]]) map[nums[i]] = nums[i];
             current = nums[i]
             difference = target - current;
-            if (map[difference] && difference !== current) return [nums[i], map[difference]]
+            if (map[difference]) return [nums[i], map[difference]]
         }
 
         return false;
+    }
+
+    findMedian(nums){ // Array must be pre-sorted.
+        let length = nums.length;
+        if (length%2 === 0) return ((nums[length/2] + nums[length/2 -1]) /2);
+        if (length%2 !== 0) return (nums[(Math.floor(length/2))] /2);
     }
 
 
@@ -42,11 +48,12 @@ class Sandbox {
 
 
 let sandbox = new Sandbox();
-cc(sandbox.twoSumImproved([1, 9, 12, 8, 4, 2, 3], 8));
+cc(sandbox.findMedian([3, 4, 5, 8]));
 
 /*
 cc(sandbox.isPrime(95));
 cc(sandbox.rng100());
+cc(sandbox.twoSumImproved([1, 9, 12, 8, 4, 2, 3, 4], 8));
 
 
 */
